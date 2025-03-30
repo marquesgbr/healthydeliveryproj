@@ -1,31 +1,31 @@
 db.pedidos.drop();
 
 // pra acessar o id dos clientes pelo email deles:
-const mapaClientes = {};
+const mapClientes = {};
 const clientesInseridos = db.clientes.find({}).toArray(); // Busca todos os ingredientes
-clientesInseridos.forEach(cli => { mapaClientes[cli.email] = cli._id; }); //coloca todos no map
+clientesInseridos.forEach(cli => { mapClientes[cli.email] = cli._id; }); //coloca todos no map
 
 // pra acessar o id dos clientes pelo email deles:
-const mapaItensCardapio = {};
+const mapItensCardapio = {};
 const itensInseridos = db.cardapio.find({}).toArray(); // Busca todos os ingredientes
-itensInseridos.forEach(item => { mapaItensCardapio[item.nome] = item._id; }); //coloca todos no map
+itensInseridos.forEach(item => { mapItensCardapio[item.nome] = item._id; }); //coloca todos no map
 
 
 // inserir
 db.pedidos.insertMany([
     // Carlos - Bowl de Salmão + Smoothie
     {
-        cliente: mapaClientes["carlos.albuquerque@email.com"],
+        cliente: mapClientes["carlos.albuquerque@email.com"],
         itens: [
             {
-                item: mapaItensCardapio["Bowl de Salmão Energético"],
+                item: mapItensCardapio["Bowl de Salmão Energético"],
                 nome: "Bowl de Salmão Energético",
                 quantidade: 1,
                 precoUnitario: 42.90,
                 observacoes: "Sem cebola"
             },
             {
-                item: mapaItensCardapio["Smoothie Verde Energético"],
+                item: mapItensCardapio["Smoothie Verde Energético"],
                 nome: "Smoothie Verde Energético",
                 quantidade: 1,
                 precoUnitario: 18.90,
@@ -51,10 +51,10 @@ db.pedidos.insertMany([
     },
     // Ana - Bowl Vegano
     {
-        cliente: mapaClientes["ana.montenegro@email.com"],
+        cliente: mapClientes["ana.montenegro@email.com"],
         itens: [
             {
-                item: mapaItensCardapio["Bowl Vegano Power"],
+                item: mapItensCardapio["Bowl Vegano Power"],
                 nome: "Bowl Vegano Power",
                 quantidade: 2,
                 precoUnitario: 36.90,
@@ -79,17 +79,17 @@ db.pedidos.insertMany([
     },
     // Roberto - Omelete Fit + Avocado Toast
     {
-        cliente: mapaClientes["roberto.cavalcanti@email.com"],
+        cliente: mapClientes["roberto.cavalcanti@email.com"],
         itens: [
             {
-                item: mapaItensCardapio["Omelete Fit de Espinafre"],
+                item: mapItensCardapio["Omelete Fit de Espinafre"],
                 nome: "Omelete Fit de Espinafre",
                 quantidade: 1,
                 precoUnitario: 28.50,
                 observacoes: "Bem passado"
             },
             {
-                item: mapaItensCardapio["Avocado Toast Integral"],
+                item: mapItensCardapio["Avocado Toast Integral"],
                 nome: "Avocado Toast Integral",
                 quantidade: 1,
                 precoUnitario: 22.90,
@@ -111,17 +111,17 @@ db.pedidos.insertMany([
     },
     // Juliana Santos - Jantar leve
     {
-        cliente: mapaClientes["juliana.santos@email.com"],
+        cliente: mapClientes["juliana.santos@email.com"],
         itens: [
             {
-                item: mapaItensCardapio["Wrap de Tofu e Vegetais"],
+                item: mapItensCardapio["Wrap de Tofu e Vegetais"],
                 nome: "Wrap de Tofu e Vegetais",
                 quantidade: 1,
                 precoUnitario: 26.50,
                 observacoes: "Sem tomate"
             },
             {
-                item: mapaItensCardapio["Smoothie Verde Energético"],
+                item: mapItensCardapio["Smoothie Verde Energético"],
                 nome: "Smoothie Verde Energético",
                 quantidade: 1,
                 precoUnitario: 18.90,
@@ -147,10 +147,10 @@ db.pedidos.insertMany([
 
     //Marcos Oliveira - Low Carb
     {
-        cliente: mapaClientes["marcos.oliveira@email.com"],
+        cliente: mapClientes["marcos.oliveira@email.com"],
         itens: [
             {
-                item: mapaItensCardapio["Espaguete de Abobrinha com Frango"],
+                item: mapItensCardapio["Espaguete de Abobrinha com Frango"],
                 nome: "Espaguete de Abobrinha com Frango",
                 quantidade: 1,
                 precoUnitario: 38.50,
@@ -172,17 +172,17 @@ db.pedidos.insertMany([
 
     //Fernanda Lima - Café da Manhã
     {
-        cliente: mapaClientes["fernanda.lima@email.com"],
+        cliente: mapClientes["fernanda.lima@email.com"],
         itens: [
             {
-                item: mapaItensCardapio["Avocado Toast Integral"],
+                item: mapItensCardapio["Avocado Toast Integral"],
                 nome: "Avocado Toast Integral",
                 quantidade: 2,
                 precoUnitario: 22.90,
                 observacoes: "Ovos bem cozidos"
             },
             {
-                item: mapaItensCardapio["Smoothie Verde Energético"],
+                item: mapItensCardapio["Smoothie Verde Energético"],
                 nome: "Smoothie Verde Energético",
                 quantidade: 1,
                 precoUnitario: 18.90,
@@ -207,17 +207,17 @@ db.pedidos.insertMany([
     },
     // Ricardo Ferreira - Almoço Executivo
     {
-        cliente: mapaClientes["ricardo.ferreira@email.com"],
+        cliente: mapClientes["ricardo.ferreira@email.com"],
         itens: [
             {
-                item: mapaItensCardapio["Bowl de Frango com Quinoa"],
+                item: mapItensCardapio["Bowl de Frango com Quinoa"],
                 nome: "Bowl de Frango com Quinoa",
                 quantidade: 1,
                 precoUnitario: 39.90,
                 observacoes: "Brócolis al dente"
             },
             {
-                item: mapaItensCardapio["Pudim de Chia com Frutas"],
+                item: mapItensCardapio["Pudim de Chia com Frutas"],
                 nome: "Pudim de Chia com Frutas",
                 quantidade: 1,
                 precoUnitario: 16.90,
@@ -238,17 +238,17 @@ db.pedidos.insertMany([
     },
     // Patrícia Melo - Jantar Vegano
     {
-        cliente: mapaClientes["patricia.melo@email.com"],
+        cliente: mapClientes["patricia.melo@email.com"],
         itens: [
             {
-                item: mapaItensCardapio["Curry de Grão-de-Bico"],
+                item: mapItensCardapio["Curry de Grão-de-Bico"],
                 nome: "Curry de Grão-de-Bico",
                 quantidade: 1,
                 precoUnitario: 34.90,
                 observacoes: "Picante"
             },
             {
-                item: mapaItensCardapio["Bowl Vegano Power"],
+                item: mapItensCardapio["Bowl Vegano Power"],
                 nome: "Bowl Vegano Power",
                 quantidade: 1,
                 precoUnitario: 36.90,

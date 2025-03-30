@@ -1,19 +1,19 @@
 db.cardapio.drop();
 
 // para acessar o id dos ingredientes pelo nome deles:
-const mapaNomeIngredientesParaIds = {};
+const mapNomeIngredientesParaIds = {};
 const ingredientesInseridos = db.ingredientes.find({}).toArray(); // Busca todos os ingredientes
-ingredientesInseridos.forEach(ingrediente => { mapaNomeIngredientesParaIds[ingrediente.nome] = ingrediente._id; }); //coloca todos no map
+ingredientesInseridos.forEach(ingrediente => { mapNomeIngredientesParaIds[ingrediente.nome] = ingrediente._id; }); //coloca todos no map
 
 db.cardapio.insertMany([
     {
         nome: "Bowl de Salmão Energético",
         descricao: "Salmão grelhado com quinoa, abóbora assada e espinafre",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Salmão Selvagem"],
-            mapaNomeIngredientesParaIds["Quinoa Real"],
-            mapaNomeIngredientesParaIds["Abóbora Japonesa"],
-            mapaNomeIngredientesParaIds["Espinafre"]
+            mapNomeIngredientesParaIds["Salmão Selvagem"],
+            mapNomeIngredientesParaIds["Quinoa Real"],
+            mapNomeIngredientesParaIds["Abóbora Japonesa"],
+            mapNomeIngredientesParaIds["Espinafre"]
         ],
         calorias: 520,
         proteinas: 38,
@@ -31,10 +31,10 @@ db.cardapio.insertMany([
         nome: "Bowl Vegano Power",
         descricao: "Quinoa, tofu grelhado, abóbora e mix de folhas com molho de gergelim",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Tofu Orgânico"],
-            mapaNomeIngredientesParaIds["Quinoa Real"],
-            mapaNomeIngredientesParaIds["Abóbora Japonesa"],
-            mapaNomeIngredientesParaIds["Couve Kale"]
+            mapNomeIngredientesParaIds["Tofu Orgânico"],
+            mapNomeIngredientesParaIds["Quinoa Real"],
+            mapNomeIngredientesParaIds["Abóbora Japonesa"],
+            mapNomeIngredientesParaIds["Couve Kale"]
         ],
         calorias: 480,
         proteinas: 32,
@@ -52,9 +52,9 @@ db.cardapio.insertMany([
         nome: "Omelete Fit de Espinafre",
         descricao: "Omelete com ovos caipiras, espinafre e tofu",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Ovos Caipiras"],
-            mapaNomeIngredientesParaIds["Espinafre"],
-            mapaNomeIngredientesParaIds["Tofu Orgânico"]
+            mapNomeIngredientesParaIds["Ovos Caipiras"],
+            mapNomeIngredientesParaIds["Espinafre"],
+            mapNomeIngredientesParaIds["Tofu Orgânico"]
         ],
         calorias: 320,
         proteinas: 28,
@@ -72,10 +72,10 @@ db.cardapio.insertMany([
         nome: "Salada Mediterrânea",
         descricao: "Mix de folhas, quinoa, tomate seco e azeite",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Quinoa Real"],
-            mapaNomeIngredientesParaIds["Tomate Cereja"],
-            mapaNomeIngredientesParaIds["Azeite de Oliva Extra Virgem"],
-            mapaNomeIngredientesParaIds["Espinafre"]
+            mapNomeIngredientesParaIds["Quinoa Real"],
+            mapNomeIngredientesParaIds["Tomate Cereja"],
+            mapNomeIngredientesParaIds["Azeite de Oliva Extra Virgem"],
+            mapNomeIngredientesParaIds["Espinafre"]
         ],
         calorias: 380,
         proteinas: 12,
@@ -93,9 +93,9 @@ db.cardapio.insertMany([
         nome: "Avocado Toast Integral",
         descricao: "Pão integral com abacate amassado, ovos pochê e sementes de gergelim",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Abacate Hass"],
-            mapaNomeIngredientesParaIds["Ovos Caipiras"],
-            mapaNomeIngredientesParaIds["Gergelim Preto"]
+            mapNomeIngredientesParaIds["Abacate Hass"],
+            mapNomeIngredientesParaIds["Ovos Caipiras"],
+            mapNomeIngredientesParaIds["Gergelim Preto"]
         ],
         calorias: 350,
         proteinas: 15,
@@ -107,9 +107,9 @@ db.cardapio.insertMany([
         nome: "Espaguete de Abobrinha com Frango",
         descricao: "Abobrinha em tiras, frango grelhado e molho de tomate natural",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Frango Orgânico"],
-            mapaNomeIngredientesParaIds["Tomate Cereja"],
-            mapaNomeIngredientesParaIds["Azeite de Oliva Extra Virgem"]
+            mapNomeIngredientesParaIds["Frango Orgânico"],
+            mapNomeIngredientesParaIds["Tomate Cereja"],
+            mapNomeIngredientesParaIds["Azeite de Oliva Extra Virgem"]
         ],
         calorias: 280,
         proteinas: 30,
@@ -120,9 +120,9 @@ db.cardapio.insertMany([
         nome: "Smoothie Verde Energético",
         descricao: "Espinafre, abacate, banana e leite de coco",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Espinafre"],
-            mapaNomeIngredientesParaIds["Abacate Hass"],
-            mapaNomeIngredientesParaIds["Leite de Coco"]
+            mapNomeIngredientesParaIds["Espinafre"],
+            mapNomeIngredientesParaIds["Abacate Hass"],
+            mapNomeIngredientesParaIds["Leite de Coco"]
         ],
         calorias: 320,
         proteinas: 8,
@@ -134,9 +134,9 @@ db.cardapio.insertMany([
         nome: "Bowl de Frango com Quinoa",
         descricao: "Frango grelhado, quinoa, brócolis e molho de iogurte",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Frango Orgânico"],
-            mapaNomeIngredientesParaIds["Quinoa Real"],
-            mapaNomeIngredientesParaIds["Brócolis Orgânico"]
+            mapNomeIngredientesParaIds["Frango Orgânico"],
+            mapNomeIngredientesParaIds["Quinoa Real"],
+            mapNomeIngredientesParaIds["Brócolis Orgânico"]
         ],
         calorias: 450,
         proteinas: 40,
@@ -147,9 +147,9 @@ db.cardapio.insertMany([
         nome: "Curry de Grão-de-Bico",
         descricao: "Grão-de-bico cozido com leite de coco e especiarias",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Grão-de-Bico Cozido"],
-            mapaNomeIngredientesParaIds["Leite de Coco"],
-            mapaNomeIngredientesParaIds["Cúrcuma em Pó"]
+            mapNomeIngredientesParaIds["Grão-de-Bico Cozido"],
+            mapNomeIngredientesParaIds["Leite de Coco"],
+            mapNomeIngredientesParaIds["Cúrcuma em Pó"]
         ],
         calorias: 380,
         proteinas: 18,
@@ -161,9 +161,9 @@ db.cardapio.insertMany([
         nome: "Wrap de Tofu e Vegetais",
         descricao: "Tofu grelhado, folhas e tomate em wrap integral",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Tofu Orgânico"],
-            mapaNomeIngredientesParaIds["Tomate Cereja"],
-            mapaNomeIngredientesParaIds["Espinafre"]
+            mapNomeIngredientesParaIds["Tofu Orgânico"],
+            mapNomeIngredientesParaIds["Tomate Cereja"],
+            mapNomeIngredientesParaIds["Espinafre"]
         ],
         calorias: 290,
         proteinas: 20,
@@ -175,9 +175,9 @@ db.cardapio.insertMany([
         nome: "Pudim de Chia com Frutas",
         descricao: "Semente de chia com leite de coco e mirtilos",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Chia"],
-            mapaNomeIngredientesParaIds["Leite de Coco"],
-            mapaNomeIngredientesParaIds["Mirtilos"]
+            mapNomeIngredientesParaIds["Chia"],
+            mapNomeIngredientesParaIds["Leite de Coco"],
+            mapNomeIngredientesParaIds["Mirtilos"]
         ],
         calorias: 210,
         proteinas: 6,
@@ -189,9 +189,9 @@ db.cardapio.insertMany([
         nome: "Filé de Salmão com Aspargos",
         descricao: "Salmão grelhado com aspargos e quinoa",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Salmão Selvagem"],
-            mapaNomeIngredientesParaIds["Quinoa Real"],
-            mapaNomeIngredientesParaIds["Azeite de Oliva Extra Virgem"]
+            mapNomeIngredientesParaIds["Salmão Selvagem"],
+            mapNomeIngredientesParaIds["Quinoa Real"],
+            mapNomeIngredientesParaIds["Azeite de Oliva Extra Virgem"]
         ],
         calorias: 480,
         proteinas: 42,
@@ -202,9 +202,9 @@ db.cardapio.insertMany([
         nome: "Arroz Integral com Ovo e Vegetais",
         descricao: "Arroz integral, ovo mexido e legumes no vapor",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Arroz Integral"],
-            mapaNomeIngredientesParaIds["Ovos Caipiras"],
-            mapaNomeIngredientesParaIds["Brócolis Orgânico"]
+            mapNomeIngredientesParaIds["Arroz Integral"],
+            mapNomeIngredientesParaIds["Ovos Caipiras"],
+            mapNomeIngredientesParaIds["Brócolis Orgânico"]
         ],
         calorias: 320,
         proteinas: 22,
@@ -215,10 +215,10 @@ db.cardapio.insertMany([
         nome: "Bowl de Superfoods",
         descricao: "Quinoa, abacate, sementes e vegetais",
         ingredientes: [
-            mapaNomeIngredientesParaIds["Quinoa Real"],
-            mapaNomeIngredientesParaIds["Abacate Hass"],
-            mapaNomeIngredientesParaIds["Chia"],
-            mapaNomeIngredientesParaIds["Couve Kale"]
+            mapNomeIngredientesParaIds["Quinoa Real"],
+            mapNomeIngredientesParaIds["Abacate Hass"],
+            mapNomeIngredientesParaIds["Chia"],
+            mapNomeIngredientesParaIds["Couve Kale"]
         ],
         calorias: 420,
         proteinas: 15,
