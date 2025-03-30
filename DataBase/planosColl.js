@@ -5,10 +5,10 @@ db.planos.insertMany([
         descricao: "Plano balanceado para uma alimentação saudável com proporções ideais de macronutrientes",
         valorMensal: 899.90,
         listaPratos: [
-            "Bowl de Quinoa com Frango",
-            "Salmão Grelhado com Legumes",
-            "Wrap de Atum Integral",
-            "Omelete de Claras com Espinafre"
+            "Filé de Salmão com Aspargos",
+            "Arroz Integral com Ovo e Vegetais",
+            "Wrap de Tofu e Vegetais",
+            "Omelete Fit de Espinafre"
         ],
         tipos: ["Equilibrado", "Proteico"],
         objetivo: "manutenção"
@@ -47,22 +47,10 @@ db.planos.insertMany([
             "Bowl de Frango com Quinoa",
             "Bowl de Salmão Energético",
             "Filé de Salmão com Aspargos",
+            "Wrap de Tofu e Vegetais",
             "Omelete Fit de Espinafre"
         ],
-        tipos: ["Fitness", "Hiperproteico"],
-        objetivo: "ganho de massa"
-    },
-    {
-        nome: "Plano Econômico",
-        descricao: "Plano acessível com boa relação custo-benefício",
-        valorMensal: 699.90,
-        listaPratos: [
-            "Arroz Integral com Ovo e Vegetais",
-            "Wrap de Tofu e Vegetais",
-            "Curry de Grão-de-Bico",
-            "Espaguete de Abobrinha com Frango"
-        ],
-        tipos: ["Econômico", "Balanceado"],
+        tipos: ["Equilibrado", "Proteico"],
         objetivo: "manutenção"
     },
     {
