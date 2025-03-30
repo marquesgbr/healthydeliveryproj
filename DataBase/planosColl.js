@@ -47,10 +47,22 @@ db.planos.insertMany([
             "Bowl de Frango com Quinoa",
             "Bowl de Salmão Energético",
             "Filé de Salmão com Aspargos",
-            "Wrap de Tofu e Vegetais",
             "Omelete Fit de Espinafre"
         ],
-        tipos: ["Equilibrado", "Proteico"],
+        tipos: ["Fitness", "Hiperproteico"],
+        objetivo: "ganho de massa"
+    },
+    {
+        nome: "Plano Econômico",
+        descricao: "Plano acessível com boa relação custo-benefício",
+        valorMensal: 699.90,
+        listaPratos: [
+            "Arroz Integral com Ovo e Vegetais",
+            "Wrap de Tofu e Vegetais",
+            "Curry de Grão-de-Bico",
+            "Espaguete de Abobrinha com Frango"
+        ],
+        tipos: ["Econômico", "Balanceado"],
         objetivo: "manutenção"
     },
     {
