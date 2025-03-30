@@ -1,6 +1,6 @@
 db = db.getSiblingDB("healthydelivery");
-load("./DataBase/ingredientesDB.js"); //ingredientes primeiro
-load("./DataBase/cardapioDB.js");
-load("./DataBase/clienteDB.js");
-load("./DataBase/pedidosDB.js");
-load("./DataBase/planosDB.js");
+load("./DataBase/ingredientesColl.js"); //ingredientes primeiro
+load("./DataBase/cardapioColl.js");
+load("./DataBase/clientesColl.js");
+load("./DataBase/pedidosColl.js");
+//load("./DataBase/planosColl.js");
