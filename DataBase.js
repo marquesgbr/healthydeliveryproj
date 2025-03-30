@@ -1,1 +1,2 @@
-load("./cardapioDB.js");
+load("./DataBase/cardapioDB.js");
+load("./DataBase/clienteDB.js");
