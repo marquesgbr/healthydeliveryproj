@@ -1,4 +1,3 @@
-db = db.getSiblingDB("healthy");
 db.clientes.drop();
 db.clientes.insertMany([
     {
