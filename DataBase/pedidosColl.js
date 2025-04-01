@@ -32,7 +32,6 @@ db.pedidos.insertMany([
                 observacoes: "Adicionar gengibre"
             }
         ],
-        total: 61.80,
         enderecoEntrega: {
             rua: "Rua do Sol",
             numero: "100",
@@ -61,7 +60,6 @@ db.pedidos.insertMany([
                 observacoes: "Molho à parte"
             }
         ],
-        total: 73.80,
         enderecoEntrega: {
             rua: "Avenida Boa Viagem",
             numero: "1500",
@@ -96,7 +94,6 @@ db.pedidos.insertMany([
                 observacoes: "Sem gergelim"
             }
         ],
-        total: 51.40,
         enderecoEntrega: {
             rua: "Rua da Aurora",
             numero: "245",
@@ -128,7 +125,41 @@ db.pedidos.insertMany([
                 observacoes: "Adicionar gengibre"
             }
         ],
-        total: 45.40,
+        enderecoEntrega: {
+            rua: "Rua Domingos Ferreira",
+            numero: "405",
+            bairro: "Pina",
+            cidade: "Recife",
+            cep: "51011-020",
+            pontoReferencia: "Condomínio Praia Linda"
+        },
+        dataPedido: new Date("2024-05-29T19:20:00"),
+        taxaEntrega: 9.00,
+        avaliacao: {
+            nota: 5,
+            comentario: "Perfeito para uma janta leve!"
+        }
+    },
+
+    // Juliana Santos
+    {
+        cliente: mapClientes["juliana.santos@email.com"],
+        itens: [
+            {
+                item: mapItensCardapio["Bowl Vegano Power"],
+                nome: "Bowl Vegano Power",
+                quantidade: 2,
+                precoUnitario: 36.90,
+                observacoes: "Extra tofu"
+            },
+            {
+                item: mapItensCardapio["Pudim de Chia com Frutas"],
+                nome: "Pudim de Chia com Frutas",
+                quantidade: 1,
+                precoUnitario: 16.90,
+                observacoes: "Sem mel"
+            }
+        ],
         enderecoEntrega: {
             rua: "Rua Domingos Ferreira",
             numero: "405",
@@ -157,7 +188,6 @@ db.pedidos.insertMany([
                 observacoes: "Molho extra"
             }
         ],
-        total: 38.50,
         enderecoEntrega: {
             rua: "Rua do Riachuelo",
             numero: "78",
@@ -189,7 +219,6 @@ db.pedidos.insertMany([
                 observacoes: "Sem banana"
             }
         ],
-        total: 64.70,
         enderecoEntrega: {
             rua: "Avenida Caxangá",
             numero: "2200",
@@ -212,19 +241,18 @@ db.pedidos.insertMany([
             {
                 item: mapItensCardapio["Bowl de Frango com Quinoa"],
                 nome: "Bowl de Frango com Quinoa",
-                quantidade: 1,
+                quantidade: 3,
                 precoUnitario: 39.90,
                 observacoes: "Brócolis al dente"
             },
             {
                 item: mapItensCardapio["Pudim de Chia com Frutas"],
                 nome: "Pudim de Chia com Frutas",
-                quantidade: 1,
+                quantidade: 4,
                 precoUnitario: 16.90,
                 observacoes: "Sem mel"
             }
         ],
-        total: 56.80,
         enderecoEntrega: {
             rua: "Rua do Futuro",
             numero: "950",
@@ -255,7 +283,6 @@ db.pedidos.insertMany([
                 observacoes: "Extra tofu"
             }
         ],
-        total: 71.80,
         enderecoEntrega: {
             rua: "Rua da Hora",
             numero: "320",
