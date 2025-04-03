@@ -352,3 +352,13 @@ db.pedidos.mapReduce(
 );
 //Visualziar coleção criada/atualizada pela query acima
 db.analise_periodos.find().sort({ "value.valor": -1 }).pretty();
+
+// Split avaliações into different collections by year and month
+
+const date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() + 1; // Months are zero-based
+db.adminCommand({
+  renameCollection: "healthydelivery." + avaliacoao,
+  to: "healthydelivery.avaliacoes_" + year + "_" + month,
+});
