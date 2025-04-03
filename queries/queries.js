@@ -109,7 +109,8 @@ db.pedidos.aggregate([
 ]);
 
 
-// Encontra os ingredientes mais caros e analisa métricas
+// Encontra os 15 ingredientes mais caros, agrupando por tipo de ingrediente
+// e gerando relatório de estoque para cada tipo
 db.ingredientes.aggregate([
   { $sort: { precoPorUn: -1 } },
   { $limit: 15 },
@@ -169,7 +170,7 @@ db.planos.aggregate([
   }
 ]);
 //Para visualizar o resultado da query acima
-db.planos.find({$exists: "intakeDiario"}).pretty();
+db.planos.find({"intakeDiario": {$exists: true} }).pretty();
 
 
 
@@ -210,10 +211,72 @@ db.pedidos.aggregate([
 ]);
 
 
+
 // Buscar nome, quantidade de proteinas e preco depratos relacionados a proteína animal
 // necessário criar índice antes (rodar uma vez após carregada base de dados):
 db.cardapio.createIndex({ nome: "text", descricao: "text" });
+
 db.cardapio.find(
   { $text: { $search: "frango salmão filé carne" } }, 
   { nome: 1, proteinas: 1, preco: 1, _id: 0 }     
 ).sort({ proteinas: -1 }).limit(5).pretty();  
+
+
+
+
+// Análise de padrões de consumo por período do dia
+db.pedidos.mapReduce(
+  // Map function - classifica pedidos por período e calcula valor total
+  function() {
+    var hora = this.dataPedido.getHours();
+    var periodo;
+    
+    if (hora >= 6 && hora < 11) periodo = "Café da Manhã";
+    else if (hora >= 11 && hora < 15) periodo = "Almoço";
+    else if (hora >= 15 && hora < 19) periodo = "Lanche da Tarde";
+    else periodo = "Jantar";
+
+    var valorTotal = 0;
+    if (this.itens && this.itens.length > 0) {
+      for (var i = 0; i < this.itens.length; i++) {
+        var item = this.itens[i];
+        valorTotal += item.quantidade * item.precoUnitario;
+      }
+    }
+    
+    emit(periodo, {
+      count: 1,
+      valor: Math.round(valorTotal*100) / 100,
+      itensCount: this.itens ? this.itens.length : 0
+    });
+  },
+  
+  // Reduce function - combina os dados por período
+  function(key, values) {
+    var resultado = {
+      count: 0,
+      valor: 0,
+      itensCount: 0
+    };
+    
+    for (var i = 0; i < values.length; i++) {
+      resultado.count += values[i].count;
+      resultado.valor += values[i].valor;
+      resultado.itensCount += values[i].itensCount;
+    }
+    
+    return resultado;
+  },
+  
+  {
+    out: { replace: "analise_periodos" },
+    finalize: function(key, resultado) {
+      resultado.valorMedio = Math.round((resultado.valor / resultado.count) * 100) / 100;
+      resultado.itensPorPedido = Math.round((resultado.itensCount / resultado.count) * 10) / 10;
+      return resultado;
+    }
+  }
+);
+//Visualziar coleção criada/atualizada pela query acima
+db.analise_periodos.find().sort({"value.valor": -1}).pretty();
+
