@@ -485,10 +485,10 @@ const resultado = db.ingredientes.insertMany([
         unidade: "kg",
         precoPorUn: 40.00,
         nutrientes100g: {
-            calorias: 370,
-            proteinas: 75.0,
-            carboidratos: 14.0,
-            gorduras: 2.0
+            calorias: 134,
+            proteinas: 22.5,
+            carboidratos: 4.5,
+            gorduras: 2.9
         }
     },
     { 
@@ -500,10 +500,10 @@ const resultado = db.ingredientes.insertMany([
         unidade: "kg",
         precoPorUn: 18.00,
         nutrientes100g: {
-            calorias: 353,
-            proteinas: 24.6,
-            carboidratos: 63.4,
-            gorduras: 1.1
+            calorias: 120,
+            proteinas: 9,
+            carboidratos: 20,
+            gorduras: 0.4
         }
     },
 ]);

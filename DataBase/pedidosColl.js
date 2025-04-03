@@ -13,7 +13,6 @@ itensInseridos.forEach(item => { mapItensCardapio[item.nome] = item._id; }); //c
 
 // inserir
 db.pedidos.insertMany([
-    // Carlos - Bowl de Salmão + Smoothie
     {
         cliente: mapClientes["carlos.albuquerque@email.com"],
         itens: [
@@ -48,7 +47,6 @@ db.pedidos.insertMany([
             comentario: "Entrega rápida e comida deliciosa!"
         }
     },
-    // Ana - Bowl Vegano
     {
         cliente: mapClientes["ana.montenegro@email.com"],
         itens: [
@@ -75,7 +73,6 @@ db.pedidos.insertMany([
             comentario: "Sabor ótimo, mas atrasou 15 minutos"
         }
     },
-    // Roberto - Omelete Fit + Avocado Toast
     {
         cliente: mapClientes["roberto.cavalcanti@email.com"],
         itens: [
@@ -104,9 +101,7 @@ db.pedidos.insertMany([
         },
         dataPedido: new Date("2024-05-29T08:45:00"),
         taxaEntrega: 7.00
-        // Sem avaliação 
     },
-    // Juliana Santos - Jantar leve
     {
         cliente: mapClientes["juliana.santos@email.com"],
         itens: [
@@ -140,8 +135,6 @@ db.pedidos.insertMany([
             comentario: "Perfeito para uma janta leve!"
         }
     },
-
-    // Juliana Santos
     {
         cliente: mapClientes["juliana.santos@email.com"],
         itens: [
@@ -175,8 +168,6 @@ db.pedidos.insertMany([
             comentario: "Perfeito para uma janta leve!"
         }
     },
-
-    //Marcos Oliveira - Low Carb
     {
         cliente: mapClientes["marcos.oliveira@email.com"],
         itens: [
@@ -199,8 +190,6 @@ db.pedidos.insertMany([
         dataPedido: new Date("2024-05-30T12:45:00"),
         taxaEntrega: 7.50
     },
-
-    //Fernanda Lima - Café da Manhã
     {
         cliente: mapClientes["fernanda.lima@email.com"],
         itens: [
@@ -234,7 +223,6 @@ db.pedidos.insertMany([
             comentario: "O smoothie veio sem gengibre, mas o toast estava ótimo!"
         }
     },
-    // Ricardo Ferreira - Almoço Executivo
     {
         cliente: mapClientes["ricardo.ferreira@email.com"],
         itens: [
@@ -262,9 +250,12 @@ db.pedidos.insertMany([
             pontoReferencia: "Sala 304"
         },
         dataPedido: new Date("2024-05-30T13:00:00"),
-        taxaEntrega: 10.00
+        taxaEntrega: 10.00,
+        avaliacao: {
+            nota: 3.2,
+            comentario: "O frango estava bom, mas o pudim veio com mel. Mais atenção na próxima."
+        }
     },
-    // Patrícia Melo - Jantar Vegano
     {
         cliente: mapClientes["patricia.melo@email.com"],
         itens: [

@@ -25,7 +25,7 @@ db.cardapio.insertMany([
         semLactose: true,
         preco: 42.90,
         categoria: "Proteico",
-        tempoPreparo: 20 // minutos
+        tempoPreparo: 20 
     },
     {
         nome: "Bowl Vegano Power",
