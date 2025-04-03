@@ -111,8 +111,7 @@ db.pedidos.aggregate([
 
 // Encontra os 15 ingredientes mais caros, agrupando por tipo de ingrediente
 // e gerando relatório de estoque para cada tipo
-db.ingredientes
-  .aggregate([
+db.ingredientes.aggregate([
     { $sort: { precoPorUn: -1 } },
     { $limit: 15 },
     {
@@ -133,8 +132,7 @@ db.ingredientes
       },
     },
     { $sort: { valorMaximoEstoque: -1, precoMedio: -1 } },
-  ])
-  .pretty();
+]).pretty();
 
 // Atualizar os planos com as informacoes nutricionais, mas
 // somente aqueles que possuem os nomes corretos dos pratos na sua lista
@@ -247,7 +245,7 @@ db.cardapio
   .limit(5)
   .pretty();
 
-// Lists all menu items that contain only vegan ingredients but are NOT categorized as vegan.
+// Lista todos os itens do menu que contêm apenas ingredientes veganos, mas NÃO estão categorizados como veganos.
 db.cardapio.aggregate([
   {
     $lookup: {
@@ -373,77 +371,77 @@ Analisa pedidos para identificar padrões alimentares relacionados a controle de
 5. Vê qual plano de refeição melhor se adequa ao perfil e adiciona como recomendado 
 */ 
 db.pedidos.aggregate([
-  { $unwind: "$itens" },
-  { $group: {
-      _id: "$cliente" ,
-      totalQtd: { $sum: "$itens.quantidade" },
-      listaNomeItens: {$addToSet: "$itens.nome"}
-  }},
-  { $match: { totalQtd: { $gt: 2 } } },
-  { $out: "clientesAnalisados" }
+    { $unwind: "$itens" },
+    { $group: {
+        _id: "$cliente" ,
+        totalQtd: { $sum: "$itens.quantidade" },
+        listaNomeItens: {$addToSet: "$itens.nome"}
+    }},
+    { $match: { totalQtd: { $gt: 2 } } },
+    { $out: "clientesAnalisados" }
 ])
 
 db.clientesAnalisados.find().forEach(function(cliente) {
-  
-  var perfilNutricional = db.cardapio.find({
-      nome: { $in: cliente.listaNomeItens },
-      $where: "this.proteinas != null && this.carboidratos != null"
-  }).toArray();
-  
-  var totalProt = 0;
-  var totalCarb = 0;
-  var totalCal = 0;
-  
-  perfilNutricional.forEach(function(item) {
-      totalProt += (item.proteinas || 0);
-      totalCarb += (item.carboidratos || 0);
-      totalCal += (item.calorias || 0);
-  });
-  
-  var perfilAlimentar = "Balanceado";
-  var objetivoRecomendado = "manutenção";
-  
-  if (totalProt > totalCarb * 1.5) {
-      perfilAlimentar = "Hiperproteico";
-      objetivoRecomendado = "ganho de massa";
-  } else if (totalCarb < 100) {
-      perfilAlimentar = "Low Carb";
-      objetivoRecomendado = "emagrecimento";
-  } else if (totalCal < 1500) {
-      perfilAlimentar = "Baixa Caloria";
-      objetivoRecomendado = "emagrecimento";
-  }
-  
-  var planoRecomendado = db.planos.findOne({
-      $where: function(perfilAlimentar, objetivoRecomendado) {
-      if (this.tipos.includes(perfilAlimentar)) return true;
-      if (this.objetivo === objetivoRecomendado) return true;
-      return false;
-      }
-  });
-  
-  if (!planoRecomendado) {planoRecomendado = db.planos.findOne({ objetivo: objetivoRecomendado });}
-  
-  db.clientes.updateOne(
-      { _id: cliente._id},
-      {
-      $set: {
-          perfilAlimentar: perfilAlimentar,
-          ultimaAnalise: new Date()
-      },
-      $addToSet: {
-          planoRecomendado: {
-          id: planoRecomendado._id,
-          nome: planoRecomendado.nome,
-          valorMensal: planoRecomendado.valorMensal,
-          dataRecomendacao: new Date(),
-          pratosCompativeis: planoRecomendado.listaPratos.filter(prato => 
-              listaNomeItens.includes(prato)
-          )
-          }
-      }
-      }
-  );
+    
+    var perfilNutricional = db.cardapio.find({
+        nome: { $in: cliente.listaNomeItens },
+        $where: "this.proteinas != null && this.carboidratos != null"
+    }).toArray();
+    
+    var totalProt = 0;
+    var totalCarb = 0;
+    var totalCal = 0;
+    
+    perfilNutricional.forEach(function(item) {
+        totalProt += (item.proteinas || 0);
+        totalCarb += (item.carboidratos || 0);
+        totalCal += (item.calorias || 0);
+    });
+    
+    var perfilAlimentar = "Balanceado";
+    var objetivoRecomendado = "manutenção";
+    
+    if (totalProt > totalCarb * 1.5) {
+        perfilAlimentar = "Hiperproteico";
+        objetivoRecomendado = "ganho de massa";
+    } else if (totalCarb < 100) {
+        perfilAlimentar = "Low Carb";
+        objetivoRecomendado = "emagrecimento";
+    } else if (totalCal < 1500) {
+        perfilAlimentar = "Baixa Caloria";
+        objetivoRecomendado = "emagrecimento";
+    }
+    
+    var planoRecomendado = db.planos.findOne({
+        $where: function(perfilAlimentar, objetivoRecomendado) {
+        if (this.tipos.includes(perfilAlimentar)) return true;
+        if (this.objetivo === objetivoRecomendado) return true;
+        return false;
+        }
+    });
+    
+    if (!planoRecomendado) {planoRecomendado = db.planos.findOne({ objetivo: objetivoRecomendado });}
+    
+    db.clientes.updateOne(
+        { _id: cliente._id},
+        {
+        $set: {
+            perfilAlimentar: perfilAlimentar,
+            ultimaAnalise: new Date()
+        },
+        $addToSet: {
+            planoRecomendado: {
+            id: planoRecomendado._id,
+            nome: planoRecomendado.nome,
+            valorMensal: planoRecomendado.valorMensal,
+            dataRecomendacao: new Date(),
+            pratosCompativeis: planoRecomendado.listaPratos.filter(prato => 
+                listaNomeItens.includes(prato)
+            )
+            }
+        }
+        }
+    );
 });
 
 db.clientesAnalisados.find({ planoRecomendado: { $exists: true } }).pretty();
