@@ -160,7 +160,7 @@ db.planos.find({$exists: "intakeDiario"}).pretty();
 
 
 // Encontra os pedidos com itens que têm mais de 30 reais de valor e
-// que têm alguma avaliação, mostrando se ficaram satisfeitos ou não (nota>=4)
+// que têm alguma avaliação, mostrando se ficaram se os clientes ficaram satisfeitos ou não (nota>=4)
 db.pedidos.aggregate([
   { $match: { "avaliacao": { $exists: true } } },
   { $lookup: {
@@ -189,7 +189,10 @@ db.pedidos.aggregate([
           else: "Necessita Atenção"
         }
       }
-  }}
+  }},
+  { 
+    $match: { "itens.0": { $exists: true } } 
+  }
 ]);
 
 
