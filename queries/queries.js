@@ -94,6 +94,34 @@ db.pedidos.aggregate([
 ]);
 
 
+// procura os produtos mais pedidos
+db.pedidos.aggregate([
+  { $unwind: "$itens" },
+  {
+      $group: {
+          _id: "$itens.item", 
+          nome: { $first: "$itens.nome" }, 
+          totalPedidos: { $sum: "$itens.quantidade" } 
+      }
+  },
+  { $sort: { totalPedidos: -1 } },
+  { $limit: 3 }
+]);
+
+// Função que conta a quantidade de pedidos dentro de um intervalo de tempo
+async function countPedidosPorPeriodo(dataInicio, dataFim) {
+  return await db.pedidos.countDocuments({
+      "dataPedido": {
+          $gte: new Date(dataInicio),
+          $lte: new Date(dataFim)
+      }
+  });
+}
+// Testa para ver qual ano teve mais pedidos
+countPedidosPorPeriodo('2023-01-01', '2023-12-31');
+countPedidosPorPeriodo('2024-01-01', '2024-12-31');
+countPedidosPorPeriodo('2025-01-01', '2025-12-31');
+
 
 // Encontra os ingredientes mais caros e analisa métricas
 db.ingredientes.aggregate([

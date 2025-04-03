@@ -66,7 +66,7 @@ db.pedidos.insertMany([
             cep: "51020-000",
             pontoReferencia: "Edifício Mar Azul, portaria 2"
         },
-        dataPedido: new Date("2024-05-28T12:15:00"),
+        dataPedido: new Date("2025-05-28T12:15:00"),
         taxaEntrega: 10.00,
         avaliacao: {
             nota: 4,
@@ -99,7 +99,7 @@ db.pedidos.insertMany([
             cep: "50070-055",
             pontoReferencia: "Ao lado da farmácia Pague Menos"
         },
-        dataPedido: new Date("2024-05-29T08:45:00"),
+        dataPedido: new Date("2023-05-29T08:45:00"),
         taxaEntrega: 7.00
     },
     {
@@ -282,7 +282,7 @@ db.pedidos.insertMany([
             cep: "52020-010",
             pontoReferencia: "Interfone 205"
         },
-        dataPedido: new Date("2024-05-30T20:00:00"),
+        dataPedido: new Date("2023-05-30T20:00:00"),
         taxaEntrega: 9.50,
         avaliacao: {
             nota: 5,
