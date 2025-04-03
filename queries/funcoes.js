@@ -14,7 +14,6 @@ console.log("Pedidos em 2024: " + countPedidosPorPeriodo('2024-01-01', '2024-12-
 console.log("Pedidos em 2025: " + countPedidosPorPeriodo('2025-01-01', '2025-12-31'));
 
 
-
 // cria e atualiza novo pedido
 const novoPedido = {
     clienteId: db.clientes.findOne({}, {_id:1})._id,
@@ -36,3 +35,11 @@ db.pedidos.updateOne(
 );
 console.log("Pedido atualizado com sucesso!");
   
+
+console.log("Pedidos em 2025: " + countPedidosPorPeriodo('2025-01-01', '2025-12-31'));
+
+// remover dados
+console.log("Deletando pedidos de abril de 2025 do sistema...")
+db.pedidos.deleteMany({ dataPedido: { $gte: new Date("2025-04-01"), $lte : new Date('2025-04-30') } });
+
+console.log("Pedidos em 2025: " + countPedidosPorPeriodo('2025-01-01', '2025-12-31'))
