@@ -445,8 +445,9 @@ db.clientesAnalisados.find().forEach(function(cliente) {
 });
 
 db.clientesAnalisados.find({ planoRecomendado: { $exists: true } }).pretty();
-
+const today = new Date();
 db.clientesAnalisados.renameCollection(
   "clientesAnalisados_" + 
-  (new Date()).getFullYear() + "_" + 
-  ((new Date()).getMonth() + 1));
+  today.getFullYear() + "_" + 
+  (today.getMonth() + 1) + "_" +
+  today.get);

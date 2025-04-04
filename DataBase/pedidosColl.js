@@ -252,8 +252,8 @@ db.pedidos.insertMany([
         dataPedido: new Date("2024-05-30T13:00:00"),
         taxaEntrega: 10.00,
         avaliacao: {
-            nota: 3.2,
-            comentario: "O frango estava bom, mas o pudim veio com mel. Mais atenção na próxima."
+            nota: 2,
+            comentario: "O frango estava ruim e o pudim veio com mel. Mais atenção na próxima."
         }
     },
     {

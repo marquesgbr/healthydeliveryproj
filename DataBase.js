@@ -1,4 +1,5 @@
-db = db.getSiblingDB("healthydelivery");
+//db = db.getSiblingDB("healthydelivery");
+use("healthydelivery");
 load("./DataBase/ingredientesColl.js"); //ingredientes primeiro
 load("./DataBase/cardapioColl.js");
 load("./DataBase/clientesColl.js");
