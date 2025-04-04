@@ -451,3 +451,34 @@ db.clientesAnalisados.renameCollection(
   today.getFullYear() + "_" + 
   (today.getMonth() + 1) + "_" +
   today.get);
+
+
+// Inserção de Plano
+// Inserindo um novo plano de refeições com praticamente zero carboidrato
+db.planos.insertOne({
+  nome: "Plano Cetogênico Premium",
+  descricao: "Plano de baixíssimo carboidrato com alto teor de gorduras saudáveis, ideal para quem busca cetose",
+  valorMensal: 1099.90,
+  listaPratos: [
+      "Omelete Fit de Espinafre",
+      "Bowl de Salmão Energético",
+      "Avocado Toast Integral",
+      "Espaguete de Abobrinha com Frango"
+  ],
+  tipos: ["Cetogênico", "Low Carb", "Alto em Gorduras"],
+  objetivo: "emagrecimento rápido"
+});
+
+
+// Deleção de pratos que receberam nota muito baixa (<=2)
+// Remove todos os pratos do cardápio que estão em pedidos com avaliação <= 2
+db.cardapio.deleteMany({
+  _id: {
+      $in: db.pedidos.aggregate([
+          { $match: { "avaliacao.nota": { $lte: 2 } } },
+          { $unwind: "$itens" },
+          { $group: { _id: "$itens.item" } },
+          { $project: { _id: 1 } }
+      ]).toArray().map(doc => doc._id)
+  }
+});
